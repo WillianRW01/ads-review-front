@@ -10,6 +10,7 @@ const authMiddleware = require("./middleware/authMiddleware");
 const app = express();
 app.use(express.json());
 
+// conferir se tem o cors 
 app.use(cors());
 
 app.get("/", (req, res) => {

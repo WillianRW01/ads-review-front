@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './styles.css'
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { createUser } from './../../api/user';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -19,21 +19,24 @@ export default function SignUp() {
       e.preventDefault();
 
       // Devera criar usuario
-      if(true){
+      const response = await createUser({
+        nome,email,senha
+      })
+      if(response.id){
         // se der certo redirecionar
         return navigate('/login')
       } else {
-        return toast('Erro inesperado, tente novamente mais tarde!')
+        return alert('Erro inesperado, tente novamente mais tarde!')
       }
     } catch (error) {
       console.log(error)
       if (error.status === 403) {
-        return toast("Sem permissão.");
+        return alert("Sem permissão.");
       }
       if (error.status === 401 || error.status === 404) {
-        return toast('Email ou senha inválido, tente novamente!');
+        return alert('Email ou senha inválido, tente novamente!');
       }
-      toast('Erro inesperado, tente novamente mais tarde!');
+      alert('Erro inesperado, tente novamente mais tarde!');
     }
   };
 

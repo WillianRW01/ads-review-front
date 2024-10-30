@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './styles.css'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { loginUser } from '../../api/user';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -25,10 +26,12 @@ export default function Login() {
     }
 
     try {
+      const response = await loginUser(email,senha)
         // Devera fazer a requisição de login
-        if (true) {
-            // se der certo saltva o token no storage e redirecionar
+        if (response.token) {
+          localStorage.setItem('token',response.token)
             return navigate('/');
+      // se der certo saltva o token no storage e redirecionar
         }
     } catch (error) {
         if (error.response.status === 403) {
