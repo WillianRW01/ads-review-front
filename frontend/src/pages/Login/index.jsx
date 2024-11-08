@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './styles.css'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { loginUser } from '../../api/user';
+import { AuthContext } from '../../auth/context';
 
 export default function Login() {
   const navigate = useNavigate();
-
+ const {login} = useContext(AuthContext)
+ const navegate = useNavigate();
   const handleBackClick = () => {
     navigate('/');
   };
@@ -29,7 +31,7 @@ export default function Login() {
       const response = await loginUser(email,senha)
         // Devera fazer a requisição de login
         if (response.token) {
-          localStorage.setItem('token',response.token)
+          login(response.token)
             return navigate('/');
       // se der certo saltva o token no storage e redirecionar
         }

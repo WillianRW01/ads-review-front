@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import './styles.css'
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { DeleteUser, getContext, UpdateUser } from '../../api/user';
 
 export default function Profile() {
@@ -23,7 +22,7 @@ export default function Profile() {
         setEmail(response.email)
       }
     } catch (error) {
-      toast('Erro inesperado, tente novamente mais tarde!')
+      alert('Erro inesperado, tente novamente mais tarde!')
     }
   }
 
@@ -37,7 +36,7 @@ export default function Profile() {
         setIsUpdate(false)
       }
     } catch (error) {
-      toast('Erro inesperado, tente novamente mais tarde!')
+      alert('Erro inesperado, tente novamente mais tarde!')
     }
   }
 
@@ -57,10 +56,10 @@ export default function Profile() {
           navigate('/')
         }
       } else {
-        toast("Nome Inválido, processo cancelado.")
+        alert("Nome Inválido, processo cancelado.")
       }
     } catch (error) {
-      toast('Erro inesperado, tente novamente mais tarde!')
+      alert('Erro inesperado, tente novamente mais tarde!')
     }
   }
 

@@ -9,10 +9,11 @@ import Profile from './pages/Profile';
 import Character from './pages/Character';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from './auth/context';
 
 function App() {
   return (
-     <>
+     <AuthProvider>
       <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -35,7 +36,7 @@ function App() {
         style={{ width: '50%' }}
       />
       <Footer />
-    </>
+    </AuthProvider>
   )
 }
 
